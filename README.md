@@ -14,8 +14,8 @@ Then the **webapp**. **The markers won't be shown until all the locations have b
 
 ```
 cd webapp
-npm install
-npm start
+yarn install
+yarn start
 ```
 
 ## Overview
