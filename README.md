@@ -2,6 +2,7 @@
 This is my solution to the generation code challenge. 
 
 ## Setup
+You must have **npm** and **yarn** installed.
 The **server** needs to be run first:
 
 ```
@@ -10,7 +11,7 @@ npm install
 npm start
 ```
 
-Then the **webapp**. **The markers won't be shown until all the locations have been retrieved in the server:**
+Then in another terminal tab the **webapp** must be run. **The markers won't be shown until all the locations have been retrieved in the server:**
 
 ```
 cd webapp
