@@ -2,7 +2,7 @@
 This is my solution to the generation code challenge. 
 
 ## Setup
-The server needs to be run first:
+The **server** needs to be run first:
 
 ```
 cd server
@@ -10,7 +10,7 @@ npm install
 npm start
 ```
 
-Then the webapp (the markers won't be shown until all the locations have been retrieved in the server):
+Then the **webapp**. **The markers won't be shown until all the locations have been retrieved in the server:**
 
 ```
 cd webapp
