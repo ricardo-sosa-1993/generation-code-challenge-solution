@@ -9,8 +9,7 @@ class Favorites extends React.Component {
 
 	renderFavorites() {
 		return this.props.markers
-			.filter(marker => {
-				return marker.favorite})
+			.filter(marker => marker.favorite)
 			.map((favorite, index) => {
 				return (
 					<NavItem
@@ -35,14 +34,19 @@ class Favorites extends React.Component {
 			});
 	}
 
-	selectMarker(favorite){
+	selectMarker(favorite) {
 		this.props.selectMarker(favorite.key);
 	}
 
 	render() {
 		return (
 			<Col xs={12} md={3} className="noPadding favMaxHeight">
-				<Navbar fluid inverse collapseOnSelect className="noPadding favMaxHeight" >
+				<Navbar
+					fluid
+					inverse
+					collapseOnSelect
+					className="noPadding favMaxHeight"
+				>
 					<Navbar.Header>
 						<Navbar.Brand>
 							<h1>Favorite Stores</h1>
@@ -50,7 +54,7 @@ class Favorites extends React.Component {
 						<Navbar.Toggle />
 					</Navbar.Header>
 					<Navbar.Collapse>
-						<Nav bsStyle="pills" stacked  className="noPadding favMaxHeight">
+						<Nav bsStyle="pills" stacked className="noPadding favMaxHeight">
 							{this.renderFavorites()}
 						</Nav>
 					</Navbar.Collapse>

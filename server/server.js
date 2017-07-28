@@ -49,7 +49,7 @@ var getGeocodingLocations = function(remainingLocations) {
 		return;
 	}
 
-	var address = remainingLocations[0].Address.replace(regex,"");
+	var address = remainingLocations[0].Address.replace(regex, "");
 	googleMapsClient.geocode({ address: address }, (err, response) => {
 		if (!err) {
 			if (response.json.results[0]) {
@@ -92,9 +92,6 @@ try {
 		}
 	} catch (e) {
 		console.log(e);
-		console.log(
-			"\x1b[31m",
-			"It wasn't possible to get locations!!!!!!!!!!!!"
-		);
+		console.log("\x1b[31m", "It wasn't possible to get locations!!!!!!!!!!!!");
 	}
 }

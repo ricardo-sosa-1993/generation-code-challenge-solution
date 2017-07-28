@@ -2,7 +2,6 @@ import React from "react";
 import { Col } from "react-bootstrap";
 /*global google*/
 
-
 class Map extends React.Component {
 	constructor(props) {
 		super(props);
@@ -18,22 +17,21 @@ class Map extends React.Component {
 		});
 	}
 
-	renderChildren(){
-		const {children} = this.props;
-		return React.Children.map(children,(child) => {
-			return React.cloneElement(child,{
+	renderChildren() {
+		const { children } = this.props;
+		return React.Children.map(children, child => {
+			return React.cloneElement(child, {
 				map: this.map,
 				selected: this.props.selectedKey === Number(child.key)
 			});
 		});
 	}
 
-
 	render() {
 		return (
 			<Col xs={12} md={9} className="noPadding maxHeight">
 				<div ref="map" className="map">
- 					{this.renderChildren()}
+					{this.renderChildren()}
 				</div>
 			</Col>
 		);

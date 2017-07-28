@@ -15,16 +15,18 @@ export default class Marker extends React.Component {
 		this.renderFavoriteButton = this.renderFavoriteButton.bind(this);
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		this.marker = new google.maps.Marker({
 			position: this.props.marker.location,
 			map: this.props.map,
 			icon: this.props.marker.favorite ? favIcon : defaultIcon
 		});
 
-
 		this.infoWindow = new google.maps.InfoWindow({
-			content: ReactDOM.render(this.renderInfoWindow(), document.createElement("div"))
+			content: ReactDOM.render(
+				this.renderInfoWindow(),
+				document.createElement("div")
+			)
 		});
 		this.marker.addListener("click", () => {
 			this.infoWindow.open(this.props.map, this.marker);
@@ -35,13 +37,14 @@ export default class Marker extends React.Component {
 		let div = document.createElement("div");
 		ReactDOM.render(this.renderInfoWindow(), div);
 		this.infoWindow.setContent(div);
-		if(this.props.selected){
+		if (this.props.selected) {
 			this.infoWindow.open(this.props.map, this.marker);
 			this.props.map.setCenter(this.marker.getPosition());
 			this.marker.setAnimation(google.maps.Animation.BOUNCE);
-			setTimeout(() => {this.marker.setAnimation(null)},1500);
-		}else
-			this.infoWindow.close();
+			setTimeout(() => {
+				this.marker.setAnimation(null);
+			}, 1500);
+		} else this.infoWindow.close();
 	}
 
 	renderInfoWindow() {
@@ -74,7 +77,6 @@ export default class Marker extends React.Component {
 		}
 	}
 
-
 	addFavorite() {
 		this.infoWindow.close();
 		this.marker.setIcon(favIcon);
@@ -84,8 +86,7 @@ export default class Marker extends React.Component {
 	removeFavorite() {
 		this.infoWindow.close();
 		this.marker.setIcon(defaultIcon);
-		if(this.props.selected)
-			this.props.removeSelected();
+		if (this.props.selected) this.props.removeSelected();
 		this.props.removeFavorite(this.props.marker);
 	}
 

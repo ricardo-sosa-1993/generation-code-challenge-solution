@@ -26,7 +26,7 @@ class App extends Component {
           favorite: this.isInFavorites(favorites, location)
         };
       });
-      this.setState({ markers: locations, selectedMarker: locations[0] });
+      this.setState({ markers: locations });
     });
   }
 
@@ -60,7 +60,10 @@ class App extends Component {
   }
 
   storeFavorites() {
-    localStorage.setItem("favorite-stores", JSON.stringify(this.getFavorites()));
+    localStorage.setItem(
+      "favorite-stores",
+      JSON.stringify(this.getFavorites())
+    );
   }
 
   addFavorite(marker) {
@@ -73,8 +76,8 @@ class App extends Component {
   removeFavorite(marker) {
     let newMarkers = this.state.markers.slice();
     this.getMarker(newMarkers, marker).favorite = false;
+    this.storeFavorites();
     this.setState({ markers: newMarkers });
-    localStorage.setItem("favorite-stores", JSON.stringify(this.getFavorites()));
   }
 
   removeSelected() {
