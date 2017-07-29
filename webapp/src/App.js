@@ -7,7 +7,7 @@ import axios from "axios";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { markers: [], selectedKey: null };
+    this.state = { markers: [], favorites: [], selectedKey: null };
     this.getLocations = this.getLocations.bind(this);
     this.getMarker = this.getMarker.bind(this);
     this.getFavorites = this.getFavorites.bind(this);
@@ -26,7 +26,7 @@ class App extends Component {
           favorite: this.isInFavorites(favorites, location)
         };
       });
-      this.setState({ markers: locations });
+      this.setState({ markers: locations, favorites: this.getFavorites(locations)});
     });
   }
 
@@ -45,10 +45,8 @@ class App extends Component {
     }
   }
 
-  getFavorites() {
-    return this.state.markers.filter(marker => {
-      return marker.favorite;
-    });
+  getFavorites(markers) {
+    return markers.filter(marker =>  marker.favorite );
   }
 
   getMarker(array, marker) {
@@ -59,25 +57,27 @@ class App extends Component {
     return JSON.parse(localStorage.getItem("favorite-stores"));
   }
 
-  storeFavorites() {
+  storeFavorites(favorites) {
     localStorage.setItem(
       "favorite-stores",
-      JSON.stringify(this.getFavorites())
+      JSON.stringify(favorites)
     );
   }
 
   addFavorite(marker) {
     let newMarkers = this.state.markers.slice();
     this.getMarker(newMarkers, marker).favorite = true;
-    this.storeFavorites();
-    this.setState({ markers: newMarkers });
+    let favorites = this.getFavorites(newMarkers)
+    this.storeFavorites(favorites);
+    this.setState({ markers: newMarkers, favorites: favorites });
   }
 
   removeFavorite(marker) {
     let newMarkers = this.state.markers.slice();
     this.getMarker(newMarkers, marker).favorite = false;
-    this.storeFavorites();
-    this.setState({ markers: newMarkers });
+    let favorites = this.getFavorites(newMarkers)
+    this.storeFavorites(favorites);
+    this.setState({ markers: newMarkers, favorites: favorites });
   }
 
   removeSelected() {
@@ -106,7 +106,7 @@ class App extends Component {
     return (
       <div className="noPadding maxHeight">
         <Favorites
-          markers={this.state.markers}
+          favorites={this.state.favorites}
           selectMarker={key => this.selectMarker(key)}
         />
         <Map selectedKey={this.state.selectedKey}>
