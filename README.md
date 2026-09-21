@@ -3,6 +3,16 @@ This is my solution to the generation code challenge.
 
 ## Setup
 You must have **npm** and **yarn** installed.
+
+The app needs two Google Maps API keys (one server-side for geocoding, one browser key for the Maps JavaScript API). Create them in the Google Cloud Console and copy the example files:
+
+```
+cp server/.env.example server/.env   # GOOGLE_MAPS_API_KEY
+cp webapp/.env.example webapp/.env   # REACT_APP_GOOGLE_MAPS_API_KEY
+```
+
+The server reads `GOOGLE_MAPS_API_KEY` from the environment (`GOOGLE_MAPS_API_KEY=... npm start`). The webapp reads `REACT_APP_GOOGLE_MAPS_API_KEY` from `webapp/.env` at build time (create-react-app injects it into `public/index.html`).
+
 The **server** needs to be run first:
 
 ```
