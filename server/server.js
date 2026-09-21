@@ -1,5 +1,5 @@
 var googleMapsClient = require("@google/maps").createClient({
-	key: "AIzaSyDJp3hpJjzZXl6rcohe7MSdxlV6VZAMGgA"
+	key: process.env.GOOGLE_MAPS_API_KEY
 });
 
 var regex = /blvd\.|calz\.|av\.|entre([^,]+),|cp([^,]+)|c\.p\.([^,]+)|c\.p([^,]+)|\(oficial\)|carr\.|col\.|no\.|avenida|delg\.|d\.f|edo\. de \mexico|s\/n|edo\. de mex\.|#|del\.|cd\.|N°|lt.|u. hab.|mz\./gi;
